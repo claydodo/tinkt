@@ -1,0 +1,5 @@
+{
+    "name": "test",
+    "cmap": ["#00000000", "yellow", "orange", "red"],
+    "norm": [0, 2, 4, 8, 16]
+}

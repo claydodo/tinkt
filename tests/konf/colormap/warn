@@ -1,0 +1,5 @@
+{
+  "name": "warn",
+  "type": "Listed",
+  "colors": ["cyan", "yellow", "orange", "red"]
+}

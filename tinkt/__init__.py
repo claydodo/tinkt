@@ -2,8 +2,8 @@
 
 name = "tinkt"
 
-import cm
-import cmap_utils
-
+from . import cm
+from . import cmap_utils
+from . import klasses
 
 from .cmap_utils import get_cmap
