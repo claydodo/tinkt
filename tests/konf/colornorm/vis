@@ -1,0 +1,5 @@
+{
+  "name": "vis",
+  "type": "BoundaryNorm",
+  "para": [2000, 500, 200, 50, 0]
+}

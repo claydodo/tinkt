@@ -1,0 +1,5 @@
+{
+  "name": "test",
+  "cmap": "colormap/warn",
+  "norm": "colornorm/vis"
+}

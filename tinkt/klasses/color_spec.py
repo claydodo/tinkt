@@ -28,7 +28,7 @@ class ColorSpec(object):
             if norm is None or isinstance(norm, mpl_colors.Normalize):
                 self.norm = norm
             elif isinstance(norm, six.string_types):
-                self.norm = self.konf['norm']
+                self.norm = self.konf[norm]
             elif isinstance(norm, (list, tuple, np.ndarray)):
                 self.norm = mpl_colors.BoundaryNorm(norm, len(norm)-1, clip=False)
             else:
@@ -46,3 +46,4 @@ class ColorSpec(object):
         if self.label:
             clb.set_label(self.label)
         return clb
+

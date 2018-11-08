@@ -7,13 +7,23 @@ import six
 import numpy as np
 from matplotlib import cm as mpl_cm
 from matplotlib import colors as mpl_colors
-import cm as tinkt_cm
+from . import cm as tinkt_cm
 
 
 CM_FAMILIES = {
     'mpl': mpl_cm,
     'tinkt': tinkt_cm
 }
+
+
+def set_under_over_bad_colors(cmap, under=None, over=None, bad=None):
+    if under is not None:
+        cmap.set_under(under)
+    if over is not None:
+        cmap.set_over(over)
+    if bad is not None:
+        cmap.set_bad(bad)
+    return cmap
 
 
 def get_cmap(base_cmap,
