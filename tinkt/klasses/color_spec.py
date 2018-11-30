@@ -10,7 +10,7 @@ from matplotlib import pyplot as plt
 class ColorSpec(object):
     konf = Konfluence()
 
-    def __init__(self, name, cmap, norm=None, categories=None, label=None):
+    def __init__(self, name='unknown', cmap=plt.cm.jet, norm=None, categories=None, label=None, **kwargs):
         self.name = name
         try:
             if isinstance(cmap, mpl_colors.Colormap):

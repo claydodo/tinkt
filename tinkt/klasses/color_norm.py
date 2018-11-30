@@ -93,8 +93,8 @@ class DecreasableBoundaryNorm(mpl_colors.BoundaryNorm):
 
 
 class ColorNorm(object):
-    def __init__(self, name,
-                 type, para):
+    def __init__(self, name='unknown',
+                 type=None, para={}, **kwargs):
         self.name = name
         self.type = type
 

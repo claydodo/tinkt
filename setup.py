@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="tinkt",
-    version="0.0.6",
+    version="0.0.7",
     author="claydodo and his little friends (xiao huo ban)",
     author_email="claydodo@foxmail.com",
     description="color and colormap utils (for matplotlib)",
