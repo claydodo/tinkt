@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="tinkt",
-    version="0.0.7",
+    version="0.0.10",
     author="claydodo and his little friends (xiao huo ban)",
     author_email="claydodo@foxmail.com",
     description="color and colormap utils (for matplotlib)",
@@ -21,6 +21,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ),
     install_requires=[
-        'konfluence >= 0.0.1'
+        'konfluence >= 0.0.1',
+        'krux',
     ]
 )

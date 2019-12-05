@@ -3,6 +3,8 @@
 import six
 import numpy as np
 from numpy import ma
+from krux.types.check import is_seq
+from krux.lodash import pick
 from matplotlib import colors as mpl_colors
 
 
@@ -93,19 +95,40 @@ class DecreasableBoundaryNorm(mpl_colors.BoundaryNorm):
 
 
 class ColorNorm(object):
+    NORM_TYPES = {
+        'Normalize': {'cls': mpl_colors.Normalize, 'args': ['vmin', 'vmax', 'clip']},
+        'LogNorm': {'cls': mpl_colors.LogNorm, 'args': ['vmin', 'vmax', 'clip']},
+        'SymLogNorm': {'cls': mpl_colors.SymLogNorm, 'args': ['linthres', 'linscale', 'vmin', 'vmax', 'clip']},
+        'PowerNorm': {'cls': mpl_colors.PowerNorm, 'args': ['gamma', 'vmin', 'vmax', 'clip'] }
+    }
+
     def __init__(self, name='unknown',
-                 type=None, para={}, **kwargs):
+                 type='Normalize', para={}, **kwargs):
         self.name = name
         self.type = type
 
         self.norm = None
         if self.type == 'BoundaryNorm':
-            if isinstance(para, (list, tuple, np.ndarray)):
+            if is_seq(para):
                 self.norm = mpl_colors.BoundaryNorm(para, len(para)-1)
             elif isinstance(para, dict):
-                self.norm = mpl_colors.BoundaryNorm(**para)
+                filtered_para = pick(para, ['boundaries', 'ncolors', 'clip'])
+                self.norm = mpl_colors.BoundaryNorm(**filtered_para)
             else:
                 raise ValueError("Bad para for BoundaryNorm: {}".format(para))
+        else:
+            type_info = self.NORM_TYPES.get(self.type)
+            if type_info is None:
+                raise ValueError("Bad norm type: {}".format(self.type))
+
+            if is_seq(para):
+                cleaned_para = para[:len(type_info["args"])]
+                self.norm = type_info["cls"](*cleaned_para)
+            elif isinstance(para, dict):
+                cleaned_para = pick(para, type_info["args"])
+                self.norm = type_info["cls"](**cleaned_para)
+            else:
+                raise ValueError("Bad para for {}: {}".format(self.type, para))
 
     def generate(self, *args):
         return self.norm
